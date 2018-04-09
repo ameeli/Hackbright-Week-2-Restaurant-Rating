@@ -1,9 +1,13 @@
 """Restaurant rating lister."""
+
+
 def read_ratings(file_):
     """
     Opens and reads file and splits each line into a pair which is used in a dictionary.
     """
     rest_ratings = {}
+    new_name = raw_input ("What is a restaurant name? ")
+    new_rating = raw_input ("What rating would you give this restaurant? ")
 
     with open(file_) as info:
         for line in info:
@@ -13,19 +17,18 @@ def read_ratings(file_):
 
             rest_ratings[restaurant] = rating
 
+        rest_ratings[new_name] = new_rating
         return rest_ratings
 
 
-def print_ratings(file_):
+def print_ratings(rest_ratings):
     """
     Takes dictionary of restaurants and rating, and prints them in alphabetical order.
     """
-    rest_ratings = read_ratings(file_)
     sorted_rest_ratings = sorted(rest_ratings)
 
-    for item in sorted_rest_ratings:
-        print "%s is rated at %s." % (item, rest_ratings[item])
+    for restaurant in sorted_rest_ratings:
+        print "%s is rated at %s." % (restaurant, rest_ratings[restaurant])
 
-print_ratings('scores.txt')
-
-
+rest_ratings = read_ratings('scores.txt')
+print_ratings(rest_ratings)
